@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import config from "config";
 import { IUserModel } from "./types";
+import logger from "../../utils/logger";
 
 const userSchema = new mongoose.Schema(
   {
@@ -14,8 +15,10 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-userSchema.pre("save", async (next) => {
+userSchema.pre("save", async function (next) {
   const self = this as IUserModel;
+
+  logger.info(this);
 
   if (!self.isModified("password")) {
     return next();
