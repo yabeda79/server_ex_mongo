@@ -50,5 +50,11 @@ export const createUserSessionHandler = async (req: Request, res: Response) => {
     logger.error((e as Error).message);
     return res.status(500).send("Something went wrong, try again later");
   }
-  // Password validation
+};
+
+export const getUserSessionsHandler = async (req: Request, res: Response) => {
+  try {
+  } catch (e) {
+    logger.error((e as Error).message);
+  }
 };

@@ -1,5 +1,8 @@
 import { Express, Request, Response } from "express";
-import { createUserSessionHandler } from "../../controllers/session";
+import {
+  createUserSessionHandler,
+  getUserSessionsHandler,
+} from "../../controllers/session";
 import { createUserHandler } from "../../controllers/user";
 import validateResource from "../../middlewares/validateResource";
 import { createSessionSchema } from "../../schemas/session";
@@ -17,6 +20,8 @@ const authRouter = (app: Express) => {
     validateResource(createSessionSchema),
     createUserSessionHandler
   );
+
+  app.get("/api/sessions", getUserSessionsHandler);
 };
 
 export default authRouter;
