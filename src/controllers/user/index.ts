@@ -17,13 +17,16 @@ export const createUserHandler = async (
 
     const user = await createUser(
       body as DocumentDefinition<
-        Omit<IUserModel, "createdAt" | "updatedAt" | "passwordConfirmation">
+        Omit<
+          IUserModel,
+          "createdAt" | "updatedAt" | "passwordConfirmation" | "comparePassword"
+        >
       >
     );
 
     return res.send(omit(user.toJSON(), "password"));
   } catch (e) {
     logger.error(e);
-    return res.status(409).send(e.message);
+    return res.status(409).send((e as Error).message);
   }
 };
