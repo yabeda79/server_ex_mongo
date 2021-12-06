@@ -4,7 +4,7 @@ import { IUserModel } from "../../models/user/types";
 
 export const createUser = async (
   input: DocumentDefinition<
-    Omit<IUserModel, "createdAt" | "updatedAt" | "comparePassword">
+    Omit<IUserModel, "createdAt" | "updatedAt" | "passwordConfirmation">
   >
 ) => {
   try {

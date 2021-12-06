@@ -1,5 +1,5 @@
 import { TypeOf } from "zod";
-import { createUserSchema } from ".";
+import { createUserSchema } from "../../schemas/user";
 
 export type TCreateUserInput = Omit<
   TypeOf<typeof createUserSchema>,
