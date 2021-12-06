@@ -13,8 +13,6 @@ export const createUserHandler = async (
   try {
     const body = req.body;
 
-    // TODO : resolve ts
-
     const user = await createUser(
       body as DocumentDefinition<
         Omit<
@@ -24,7 +22,9 @@ export const createUserHandler = async (
       >
     );
 
-    return res.send(omit(user.toJSON(), "password"));
+    // TODO: user.toJSON()?
+
+    return res.send(omit(user, "password"));
   } catch (e) {
     logger.error(e);
     return res.status(409).send((e as Error).message);
