@@ -22,7 +22,7 @@ const authRouter = (app: Express) => {
     createUserSessionHandler
   );
 
-  app.get("/api/sessions", deserializeUser, getUserSessionsHandler);
+  app.get("/api/sessions", getUserSessionsHandler);
 };
 
 export default authRouter;
