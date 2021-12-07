@@ -17,7 +17,10 @@ export const signJwt = (object: Object, options?: jwt.SignOptions) => {
 export const verifyJwt = (token: string) => {
   try {
     logger.info("Verifying token");
-    const decoded = jwt.verify(token, publicKey);
+    console.log(publicKey, token);
+
+    const decoded = jwt.verify(token, publicKey, { algorithms: ["RS256"] });
+    logger.info("Token verifyed");
     return {
       valid: true,
       expired: false,
