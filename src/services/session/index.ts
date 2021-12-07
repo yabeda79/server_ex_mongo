@@ -1,4 +1,4 @@
-import { FilterQuery } from "mongoose";
+import { FilterQuery, UpdateQuery } from "mongoose";
 import SessionModel from "../../models/session";
 import { ISessionModel } from "../../models/session/types";
 import logger from "../../utils/logger";
@@ -17,4 +17,13 @@ export const findUserSessions = async (query: FilterQuery<ISessionModel>) => {
   logger.info("Send response");
 
   return sessions;
+};
+
+export const updateUserSessions = async (
+  query: FilterQuery<ISessionModel>,
+  update: UpdateQuery<ISessionModel>
+) => {
+  logger.info("Updaring sesions...");
+
+  return SessionModel.updateOne(query, update);
 };

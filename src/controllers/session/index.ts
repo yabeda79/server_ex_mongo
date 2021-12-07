@@ -1,5 +1,9 @@
 import { Request, Response } from "express";
-import { createUserSession, findUserSessions } from "../../services/session";
+import {
+  createUserSession,
+  findUserSessions,
+  updateUserSessions,
+} from "../../services/session";
 import { validatePassword } from "../../services/user";
 import { signJwt } from "../../utils/jwt.utils";
 import config from "config";
@@ -65,4 +69,15 @@ export const getUserSessionsHandler = async (req: Request, res: Response) => {
     logger.error((e as Error).message);
     return res.status(401).send("Can not find sessions");
   }
+};
+
+export const deleteUserSessionHandler = async (req: Request, res: Response) => {
+  const sessionId = res.locals.user.session;
+
+  await updateUserSessions({ _id: sessionId }, { valid: false });
+
+  return res.send({
+    accessToken: null,
+    refreshToken: null,
+  });
 };

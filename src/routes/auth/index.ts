@@ -1,10 +1,10 @@
 import { Express, Request, Response } from "express";
 import {
   createUserSessionHandler,
+  deleteUserSessionHandler,
   getUserSessionsHandler,
 } from "../../controllers/session";
 import { createUserHandler } from "../../controllers/user";
-import deserializeUser from "../../middlewares/deserializeUser";
 import requireUser from "../../middlewares/requireUser";
 import validateResource from "../../middlewares/validateResource";
 import { createSessionSchema } from "../../schemas/session";
@@ -24,6 +24,8 @@ const authRouter = (app: Express) => {
   );
 
   app.get("/api/sessions", requireUser, getUserSessionsHandler);
+
+  app.delete("/api/sessions", requireUser, deleteUserSessionHandler);
 };
 
 export default authRouter;
