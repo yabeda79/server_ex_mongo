@@ -14,6 +14,8 @@ export const signJwt = (object: Object, options?: jwt.SignOptions) => {
   });
 };
 
+//
+
 export const verifyJwt = (token: string) => {
   try {
     logger.info("Verifying token");
