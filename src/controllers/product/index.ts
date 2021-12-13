@@ -75,10 +75,6 @@ export const getProductHandler = async (
       return res.sendStatus(404);
     }
 
-    if (product.user != userId) {
-      res.sendStatus(403);
-    }
-
     return res.send(product);
   } catch (e) {
     logger.error((e as Error).message);
