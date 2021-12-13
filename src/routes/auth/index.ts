@@ -1,11 +1,5 @@
 import { Express, Request, Response } from "express";
 import {
-  createProductHandler,
-  deleteProductHandler,
-  getProductHandler,
-  updateProductHandler,
-} from "../../controllers/product";
-import {
   createUserSessionHandler,
   deleteUserSessionHandler,
   getUserSessionsHandler,
@@ -13,12 +7,6 @@ import {
 import { createUserHandler } from "../../controllers/user";
 import requireUser from "../../middlewares/requireUser";
 import validateResource from "../../middlewares/validateResource";
-import {
-  createProductSchema,
-  deleteProductSchema,
-  getProductSchema,
-  updateProductSchema,
-} from "../../schemas/product";
 import { createSessionSchema } from "../../schemas/session";
 import { createUserSchema } from "../../schemas/user";
 
@@ -38,30 +26,6 @@ const authRouter = (app: Express) => {
   app.get("/api/sessions", requireUser, getUserSessionsHandler);
 
   app.delete("/api/sessions", requireUser, deleteUserSessionHandler);
-
-  app.post(
-    "/api/products",
-    [requireUser, validateResource(createProductSchema)],
-    createProductHandler
-  );
-
-  app.put(
-    "/api/products",
-    [requireUser, validateResource(updateProductSchema)],
-    updateProductHandler
-  );
-
-  app.get(
-    "/api/products",
-    validateResource(getProductSchema),
-    getProductHandler
-  );
-
-  app.delete(
-    "/api/products",
-    [requireUser, validateResource(deleteProductSchema)],
-    deleteProductHandler
-  );
 };
 
 export default authRouter;

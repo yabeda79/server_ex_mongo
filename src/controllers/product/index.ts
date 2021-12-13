@@ -65,8 +65,6 @@ export const getProductHandler = async (
   res: Response
 ) => {
   try {
-    const userId = res.locals.user._id;
-
     const productId = req.params.productId;
 
     const product = await findProduct({ productId });

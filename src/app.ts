@@ -4,6 +4,7 @@ import connect from "./utils/connect";
 import logger from "./utils/logger";
 import authRouter from "./routes/auth";
 import deserializeUser from "./middlewares/deserializeUser";
+import productRouter from "./routes/product";
 
 const port = config.get<number>("port");
 
@@ -18,4 +19,5 @@ app.listen(port, async () => {
   await connect();
 
   authRouter(app);
+  productRouter(app);
 });
