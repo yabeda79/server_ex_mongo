@@ -8,7 +8,7 @@ const payload = {
     description: string({
       required_error: "Description is required",
     }).min(90, "Description should contai at least 90 symbols"),
-    price: string({
+    price: number({
       required_error: "Price is required",
     }),
     image: string({
